@@ -55,10 +55,10 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header 
+        <Header
           text="Todo"
           count={this.state.task.filter(itemData => itemData.status === 0).length} />
-          
+
         <Todo
           value="Todo"
           done={this.done}
@@ -67,10 +67,10 @@ class App extends React.Component {
           remove={this.remove}
         />
 
-        <Header 
+        <Header
           text="Undo"
           count={this.state.task.filter(itemData => itemData.status === 1).length} />
-        
+
         <Todo
           value="Done"
           done={this.done}

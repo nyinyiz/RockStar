@@ -8,19 +8,26 @@ import {
   Divider,
   Card,
  } from '@material-ui/core'
+
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import AddIcon from '@material-ui/icons/Add'
 
 
 const styles = {
   body : {
-    width : 400,
+    width : 350,
+    height : 600,
     margin : 32
   },
 
   paper : {
     display : 'flex',
-    width : 300,
-    margin : 16
+    margin : 4
   },
   
   input : {
@@ -46,7 +53,20 @@ class App extends React.Component {
       { _id: 2, subject: "Water", status: 1 },
       { _id: 3, subject: "Milo", status: 1 },
 
-    ]
+    ],
+    open : false
+  }
+
+  handleClickOpen = () => {
+    this.setState({
+      open : true
+    })
+  }
+
+  handleClose = () => {
+    this.setState({
+      open : false
+    })
   }
 
   add = () => {
@@ -120,6 +140,8 @@ class App extends React.Component {
           text="Todo"
           count={this.state.task.filter(itemData => itemData.status === 0).length} 
           clear={this.clear}
+          handleOpen={this.handleClickOpen}
+          handleClose={this.handleClose}
           selectAll={this.selectAll}
           unSelectAll={this.unSelectAll}/>
 
@@ -150,8 +172,30 @@ class App extends React.Component {
             <Button onClick={this.add} style={styles.saveButton}>
               <AddIcon />
             </Button>
-          
         </Paper>
+
+        <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}
+          >
+          <DialogTitle id="alert-dialog-slide-title">Are you sure?</DialogTitle>
+          <DialogContent>
+            <DialogContentText id="alert-dialog-slide-description">
+              This action will be clear all of your selected task.
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={this.handleClose} color="primary">
+              No
+            </Button>
+            <Button onClick={() => {
+              this.handleClose()
+              this.clear()
+            }} color="primary">
+              Yes sure
+            </Button>
+          </DialogActions>
+        </Dialog>
 
       </Card>
       </center>

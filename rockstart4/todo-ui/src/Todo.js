@@ -14,6 +14,8 @@ class Todo extends React.Component {
                 remove={this.props.remove}
                 done={this.props.done}
                 undo={this.props.undo}
+                handleOpen={this.handleClickOpen}
+                handleClose={this.handleClose}
               />
             )
           })}

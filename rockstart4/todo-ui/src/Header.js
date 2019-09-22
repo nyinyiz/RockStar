@@ -63,7 +63,7 @@ class Header extends React.Component {
                         onClose={this.hideMenu}>
                             <MenuItem onClick={() => {
                                 this.hideMenu()
-                                this.props.clear()
+                                this.props.handleOpen()
                             }}>
                                 Clear All Done
                             </MenuItem>
